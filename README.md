@@ -1,4 +1,4 @@
-# Práctica 1 Tipología y ciclo de vida de los datos -
+# Práctica 1: Tipología y ciclo de vida de los datos -
 
 Este repositorio está dedicado a la realización grupal de la primera práctica de la asignatura "Tipología y ciclo de vida de los datos", correspondiente al máster de Ciencia de Datos de la Universidad Ouberta de Catalunya (UOC).
 
