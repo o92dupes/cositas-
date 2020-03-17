@@ -27,4 +27,4 @@ class stackoverflowspider(Spider):
 
 # Una vez creado puedes ejecutarlo desde la terminal con la sentencia siguiente:
 # scrapy runspider nombre_del_script.py -o nombre_del_archivo_de_datos.csv -t csv (Se guardará en la misma ruta donde
-# tengamos el script de la araña).
+# tengamos el script de la araña)..
