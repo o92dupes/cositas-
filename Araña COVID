@@ -1,0 +1,30 @@
+from scrapy.item import Field
+from scrapy.item import Item
+from scrapy.spiders import Spider
+from scrapy.selector import Selector
+from scrapy.loader import ItemLoader
+
+# Extraer información de una web en este ejemplo se extrae la data de la pagina de casos del covid.
+ 
+# Definimos la clase covid:
+class covid(Item):
+    covid = Field()
+    id = Field()
+
+# Definimos la araña:
+class CovidSpider(Spider):
+    name = "Spider Casos"
+    start_urls = ["https://experience.arcgis.com/experience/685d0ace521648f8a5beeeee1b9125cd"]
+    def parse(self,response):
+        sel = Selector (response)
+        casos = sel.xpath('//nav[@class="feature_list"]/span/div') # Path del tag donde se encuentran los casos.
+        # Iteración sobre todas las casos.
+        for i, elem in enumerate (casos):
+            item = ItemLoader(covid(), elem)
+            item.add_xpath('Casos', './/p/span/text()')# Path del tag donde se encuentra el texto de los casos.
+            item.add_value('Pais', i)
+            yield item.load_item()
+
+# Una vez creado puedes ejecutarlo desde la terminal con la sentencia siguiente:
+# scrapy runspider nombre_del_script.py -o nombre_del_archivo_de_datos.csv -t csv (Se guardará en la misma ruta donde
+# tengamos el script de la araña).
