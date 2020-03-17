@@ -4,7 +4,7 @@ from scrapy.spiders import Spider
 from scrapy.selector import Selector
 from scrapy.loader import ItemLoader
 
-# Extraer información de una web en este ejemplo se extrae la data de la pagina de casos del covid.
+# Extraer información de una web en este ejemplo se extrae la data de la pagina de casos confirmados del covid.
  
 # Definimos la clase covid:
 class covid(Item):
@@ -17,7 +17,7 @@ class CovidSpider(Spider):
     start_urls = ["https://experience.arcgis.com/experience/685d0ace521648f8a5beeeee1b9125cd"]
     def parse(self,response):
         sel = Selector (response)
-        casos = sel.xpath('//nav[@class="feature_list"]/span/div') # Path del tag donde se encuentran los casos.
+        casos = sel.xpath('//div[@class="external_html"]/div/div') # Path del tag donde se encuentran los casos.
         # Iteración sobre todas las casos.
         for i, elem in enumerate (casos):
             item = ItemLoader(covid(), elem)
